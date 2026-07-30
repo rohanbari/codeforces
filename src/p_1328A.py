@@ -1,0 +1,6 @@
+t = int(input())
+
+for _ in range(t):
+    a, b = map(int, input().split())
+    moves = (b - (a % b)) % b
+    print(moves)
