@@ -1,9 +1,34 @@
 package _2026_._08_;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class P_144A {
+    private static int stepsToSort(int[] nums) {
+        int max = nums[0];
+        int min = nums[0];
+        int maxIdx = 0;
+        int minIdx = 0;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (max < nums[i]) {
+                max = nums[i];
+                maxIdx = i;
+            }
+
+            if (min >= nums[i]) {
+                min = nums[i];
+                minIdx = i;
+            }
+        }
+
+        int moves = maxIdx + (nums.length - 1 - minIdx);
+        if (minIdx < maxIdx) {
+            moves--;
+        }
+
+        return moves;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -18,25 +43,7 @@ public class P_144A {
 
         int steps = stepsToSort(nums);
         System.out.println(steps);
-        System.out.println(Arrays.toString(nums));
 
         scanner.close();
-    }
-
-    private static int stepsToSort(int[] nums) {
-        int count = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = 0; j < nums.length - i - 1; j++) {
-                if (nums[j] < nums[j + 1]) {
-                    int temp = nums[j];
-                    nums[j] = nums[j + 1];
-                    nums[j + 1] = temp;
-
-                    count++;
-                }
-            }
-        }
-
-        return count;
     }
 }
